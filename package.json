@@ -1,7 +1,6 @@
 {
   "name": "js.playwright.tutorial",
   "version": "1.0.0",
-  "type": "module",
   "main": "index.js",
   "repository": "git@github.com:prasetyo531/js.playwright.tutorial.git",
   "author": "prasetyo <prasetyo531@gmail.com>",
