@@ -9,10 +9,6 @@ class BaseAPI {
     this.baseURL = process.env.BASE_URL;
   }
 
-  async init() {
-    this.context = await request.newContext();
-  }
-
   async get(endpoint) {
     const response = await fetch(`${this.baseURL}${endpoint}`);
     return response;

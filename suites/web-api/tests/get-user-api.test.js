@@ -5,14 +5,9 @@ import { userValid } from "@data/const/user-id.data";
 test.describe("Get Single User", () => {
   let userAPI, userId;
 
-  test.beforeAll(async () => {
-    userAPI = new UserAPI();
-    await userAPI.init(); // Ensure init is called before any requests
-
-    userId = userValid.user_id;
-  });
-
   test("Get user by ID", async () => {
+    userAPI = new UserAPI();
+    userId = userValid.user_id;
     //valid user ID
     const response = await userAPI.getUser(userId);
     console.log(response);
