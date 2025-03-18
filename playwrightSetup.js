@@ -1,5 +1,5 @@
 // playwrightSetup.js
-const { defineConfig } = require("@playwright/test");
+import { defineConfig } from "@playwright/test";
 
 export const config = defineConfig({
   testDir: "./tests",
@@ -14,26 +14,13 @@ export const config = defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    baseURL: "http://localhost:3000",
-    browserName: "chromium",
-    headless: false,
-    screenshot: "on",
-    video: "retain-on-failure",
-    trace: 'on-first-retry',
-  },
   projects: [
     {
-      name: "chromium",
-      use: { browserName: "chromium" },
-    },
-    {
-      name: "firefox",
-      use: { browserName: "firefox" },
-    },
-    {
-      name: "webkit",
-      use: { browserName: "webkit" },
+      name: 'web-api',
+      testDir: 'suites/web-api/tests',
+      use: {
+        baseURL: process.env.PON_BASE_URL,
+      },
     },
   ],
 });

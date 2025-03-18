@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "allowSyntheticDefaultImports": true,
+      "paths": {
+        "@data/*": ["data/*"],
+        "@helper-data-generator/*": ["helper/*"],
+        "@base-api/*": ["base-api/*"],
+        "@base-url-api/*": ["suites/web-api/api/*"],
+        "@base-schemas-api/*": ["suites/web-api/schemas/*"],
+      }
+    }
+  }
