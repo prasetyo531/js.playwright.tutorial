@@ -1,38 +1,34 @@
-import { request } from 'playwright';
+import { request } from "playwright";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 class BaseAPI {
-    constructor() {
-        this.context = null;
-    }
+  constructor() {
+    this.context = null;
+    this.baseURL = process.env.BASE_URL;
+  }
 
-    async init() {
-        this.context = await request.newContext();
-    }
+  async init() {
+    this.context = await request.newContext();
+  }
 
-    async get(url, options = {}) {
-        if (!this.context) {
-            throw new Error('API context is not initialized. Call init() before making requests.');
-        }
-        const response = await this.context.get(url, options);
-        return response.json();
-    }
+  async get(endpoint) {
+    const response = await fetch(`${this.baseURL}${endpoint}`);
+    return response;
+  }
 
-    async post(url, data, options = {}) {
-        if (!this.context) {
-            throw new Error('API context is not initialized. Call init() before making requests.');
-        }
-        const response = await this.context.post(url, {
-            ...options,
-            data: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
-        });
-        return response.json();
-    }
-
-    // Add more methods (put, delete, etc.) as needed
+  async post(endpoint, data) {
+    const response = await fetch(`${this.baseURL}${endpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return response;
+  }
+  // Add more methods (put, delete, etc.) as needed
 }
 
 export default BaseAPI;
