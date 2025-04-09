@@ -1,30 +1,33 @@
-import { request } from "playwright";
-import dotenv from 'dotenv';
+import axios from "axios";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 class BaseAPI {
   constructor() {
-    this.context = null;
-    this.baseURL = process.env.BASE_URL;
-  }
-
-  async get(endpoint) {
-    const response = await fetch(`${this.baseURL}${endpoint}`);
-    return response;
-  }
-
-  async post(endpoint, data) {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method: "POST",
+    this.client = axios.create({
+      baseURL: process.env.BASE_URL, // Use the base URL from the .env file
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     });
-    return response;
   }
-  // Add more methods (put, delete, etc.) as needed
+
+  async get(endpoint) {
+    return await this.client.get(endpoint);
+  }
+
+  async post(endpoint, data) {
+    return await this.client.post(endpoint, data);
+  }
+
+  async put(endpoint, data) {
+    return await this.client.put(endpoint, data);
+  }
+
+  async delete(endpoint) {
+    return await this.client.delete(endpoint);
+  }
 }
 
 export default BaseAPI;
