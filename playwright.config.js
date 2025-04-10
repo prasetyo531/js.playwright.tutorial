@@ -1,6 +1,6 @@
 // @ts-check
-import { config } from './playwrightSetup.js';
-import { defineConfig } from '@playwright/test';
+import { config } from "./playwrightSetup.js";
+import { defineConfig, expect } from "@playwright/test";
 
 /**
  * Read environment variables from file.
@@ -21,9 +21,9 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
   },
- 
+
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
@@ -31,4 +31,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-

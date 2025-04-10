@@ -9,9 +9,7 @@ class UserAPI extends BaseAPI {
     return await this.get(`api/users/${userId}`);
   }
   async postUser(payload) {
-    return await this.post(`api/users}`), {
-      form: payload
-    }
+    return await this.post(`api/users}`);
   }
 }
 

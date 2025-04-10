@@ -9,6 +9,7 @@ class BaseAPI {
       baseURL: process.env.BASE_URL, // Use the base URL from the .env file
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json"
       },
     });
   }
@@ -18,7 +19,8 @@ class BaseAPI {
   }
 
   async post(endpoint, data) {
-    return await this.client.post(endpoint, data);
+    const response = await this.client.post(endpoint, data);
+    return response.data; // Return the parsed JSON data
   }
 
   async put(endpoint, data) {
