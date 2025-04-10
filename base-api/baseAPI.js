@@ -7,19 +7,25 @@ class BaseAPI {
   constructor() {
     this.client = axios.create({
       baseURL: process.env.BASE_URL, // Use the base URL from the .env file
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
     });
   }
+
+  isFormData(data) {
+    return data instanceof FormData;
+}
 
   async get(endpoint) {
     return await this.client.get(endpoint);
   }
 
   async post(endpoint, data) {
-    const response = await this.client.post(endpoint, data);
+    const config = {
+      headers: {
+        "Content-Type": this.isFormData(data) ? undefined : "application/json", // Automatically set for FormData
+      },
+    };
+
+    const response = await this.client.post(endpoint, data, config);
     return response.data; // Return the parsed JSON data
   }
 
