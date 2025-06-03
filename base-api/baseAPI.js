@@ -62,6 +62,17 @@ class BaseAPI {
   async delete(endpoint, config = {}) {
     return this.client.delete(endpoint, config);
   }
+
+  async postForm(endpoint, dataObject, config = {}) {
+    const formData = new URLSearchParams(dataObject).toString();
+
+    config.headers = {
+      ...config.headers,
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
+    return this.client.post(endpoint, formData, config);
+  }
 }
 
 export default BaseAPI;

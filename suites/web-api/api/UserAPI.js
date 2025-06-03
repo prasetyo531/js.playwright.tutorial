@@ -8,8 +8,9 @@ class UserAPI extends BaseAPI {
   async getUser(userId) {
     return await this.get(`api/users/${userId}`);
   }
+
   async postUser(payload) {
-    return await this.post(`api/users}`);
+    return await this.post(`auth`, payload);
   }
 }
 

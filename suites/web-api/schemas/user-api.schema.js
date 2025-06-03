@@ -1,18 +1,13 @@
 const VALID_GET_USERS_SCHEMA = {
+  $schema: "http://json-schema.org/draft-07/schema#",
+  title: "Generated schema for Root",
   type: "object",
-  required: [
-      "id",
-      "createdAt"
-  ],
-  additionalProperties: true,
   properties: {
-      id: {
-          type: "string"
-      },
-      createdAt: {
-          type: "string"
-      }
-  }
-}
+    token: {
+      type: "string",
+    },
+  },
+  required: ["token"]
+};
 
 export default VALID_GET_USERS_SCHEMA;
